@@ -4,6 +4,11 @@ from langchain.callbacks.manager import (
     CallbackManagerForToolRun,
 )
 
+from langchain import LLMChain, PromptTemplate
+from langchain.base_language import BaseLanguageModel
+from typing import List, Optional, Mapping, Any
+from custom_search import DeepSearch
+
 class functional_Tool(BaseTool):
     name: str = ""
     description: str = ""
@@ -61,7 +66,7 @@ class Product_knowledge_Tool(functional_Tool):
         if not self.llm_chain:
             self.llm_chain = LLMChain(llm=self.llm, prompt=self.prompt)
             
-            
+##不同tool的prompt或者搜索方式应该不同，这里举例用的是完全一样的         
 class Actor_knowledge_Tool(functional_Tool):
     llm: BaseLanguageModel
 
