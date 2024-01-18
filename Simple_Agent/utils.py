@@ -297,3 +297,27 @@ def delete_all_files_in_folder(folder_id, upload_to_google_drive=False):
                     shutil.rmtree(file_path)
             except Exception as e:
                 print(f'Failed to delete {file_path}. Reason: {e}')
+                
+def extract_data(sql_query,df_name,g='globals()'):
+    """
+    借助pymysql将MySQL中的某张表读取并保存到本地Python环境中。
+    :param sql_query: 字符串形式的SQL查询语句，用于提取MySQL中的某张表。
+    :param df_name: 将MySQL数据库中提取的表格进行本地保存时的变量名，以字符串形式表示。
+    :param g: g，字符串形式变量，表示环境变量，无需设置，保持默认参数即可
+    :return：表格读取和保存结果
+    """
+    
+    mysql_pw = os.getenv('MYSQL_PW')
+    
+    connection = pymysql.connect(
+            host='localhost',  # 数据库地址
+            user='root',  # 数据库用户名
+            passwd=mysql_pw,  # 数据库密码
+            db='telco_db',  # 数据库名
+            charset='utf8'  # 字符集选择utf8
+        )
+    
+    
+    g[df_name] = pd.read_sql(sql_query, connection)
+    
+    return "已成功完成%s变量创建" % df_name
