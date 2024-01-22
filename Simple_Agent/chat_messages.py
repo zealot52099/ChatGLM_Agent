@@ -1,3 +1,55 @@
+import os
+import openai
+import copy
+import glob
+import shutil
+openai.api_key = os.getenv("OPENAI_API_KEY")
+from IPython.display import display, Code, Markdown
+import matplotlib.pyplot as plt
+import seaborn as sns
+import time
+import tiktoken
+
+import numpy as np
+import pandas as pd
+
+import json
+import io
+import inspect
+import requests
+import re
+import random
+import string
+import base64
+import pymysql
+import os.path
+import matplotlib
+
+from googleapiclient.errors import HttpError
+from googleapiclient.discovery import build
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.http import MediaIoBaseUpload
+import base64
+import email
+from email import policy
+from email.parser import BytesParser
+from email.mime.text import MIMEText
+from openai.error import APIConnectionError
+
+from bs4 import BeautifulSoup
+import dateutil.parser as parser
+
+import sys
+from gptLearning import *
+os.environ['SSL_VERSION'] = 'TLSv1_2'
+
+import warnings
+warnings.filterwarnings("ignore")
+
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from io import BytesIO
 class ChatMessages():
     """
     ChatMessages类，用于创建Chat模型能够接收和解读的messages对象。该对象是原始Chat模型接收的\
